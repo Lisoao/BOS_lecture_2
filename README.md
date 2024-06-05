@@ -1,3 +1,16 @@
-# libmysyslog-json
+# mysyslog-daemon
 ## Описание
-Реализация тестового приложения mysyslog-daemon, которое автоматически запускается при старте компьютера и выводит журнал с разными уровнями.
+Модуль mysyslog-daemon - это демон, который выводит журнал с разными уровнями в формате текста или JSON.
+
+## Сборка
+Модуль собирается с помощью Makefile:
+```makefile
+all: mysyslog-daemon
+
+mysyslog-daemon: mysyslog-daemon.c
+    $(CC) $(CFLAGS) $(LDFLAGS) -o $@ $<
+
+clean:
+    rm -f mysyslog-daemon
+    rm -f mysyslog-daemon.o
+    rm -f mysyslog-daemon.so
