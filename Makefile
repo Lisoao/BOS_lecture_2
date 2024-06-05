@@ -1,9 +1,15 @@
-# Сборка библиотеки
-all: libmysyslog-json.so
+CC = gcc
+CFLAGS = -Wall -Wextra
 
-libmysyslog-json.so: libmysyslog-json.c libmysyslog-json.h
-    gcc -shared -o libmysyslog-json.so libmysyslog-json.c
+TARGET = mysyslog-daemon
+SRC = mysyslog_daemon.c
 
-# Удаление временных файлов
+all: $(TARGET)
+
+$(TARGET): $(SRC)
+	$(CC) $(CFLAGS) -o $@ $^
+
 clean:
-    rm -f libmysyslog-json.so
+	rm -f $(TARGET)
+
+.PHONY: all clean
