@@ -1,9 +1,15 @@
-# Сборка библиотеки
-all: libmysyslog.so
+CC = gcc
+CFLAGS = -Wall -Wextra
 
-libmysyslog.so: libmysyslog.c libmysyslog.h
-    gcc -shared -o libmysyslog.so libmysyslog.c
+TARGET = mysyslog-daemon
+SRC = mysyslog_daemon.c
 
-# Удаление временных файлов
+all: $(TARGET)
+
+$(TARGET): $(SRC)
+	$(CC) $(CFLAGS) -o $@ $^
+
 clean:
-    rm -f libmysyslog.so
+	rm -f $(TARGET)
+
+.PHONY: all clean
